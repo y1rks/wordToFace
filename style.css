@@ -1,0 +1,13 @@
+.word {
+  font-size: 100px;
+  font-family: serif;
+  height: 300px;
+  text-align: center;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.canvas {
+  margin-top: 50px;
+  text-align: center; 
+}
