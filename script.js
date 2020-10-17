@@ -1,13 +1,19 @@
 // canvas用変数
 let canvas;
 let ctx;
+let canvasWidth;
+let canvasHeight;
+
+// 顔の定義
+let leftEyeCenterPoint;
+let rightEyeCenterPoint;
+let mouthCenterPoint;
 
 // 描画位置
-const eyeHeight = 50;
-const mouthHeight = 250;
-const eyeLength = 180;
-const leftEyeStartPoint = 10;
-const rightEyeStartPoint = 300;
+const eyeHeight = 100;
+const mouthHeight = 300;
+const eyeHalfLength = 90;
+const mouthHalfLength = 150;
 
 function changeWords() {
   target = document.getElementById("word");
@@ -21,11 +27,11 @@ function changeWords() {
   ctx.strokeStyle = "black";
   ctx.lineWidth = 15;
   ctx.beginPath();
-  ctx.moveTo(leftEyeStartPoint, eyeHeight);
+  ctx.moveTo(leftEyeCenterPoint - eyeHalfLength, eyeHeight);
   ctx.quadraticCurveTo(
-    leftEyeStartPoint + eyeLength / 2,
-    200,
-    leftEyeStartPoint + eyeLength,
+    leftEyeCenterPoint,
+    180,
+    leftEyeCenterPoint + eyeHalfLength,
     eyeHeight
   );
   ctx.stroke();
@@ -34,11 +40,11 @@ function changeWords() {
   ctx.strokeStyle = "black";
   ctx.lineWidth = 15;
   ctx.beginPath();
-  ctx.moveTo(rightEyeStartPoint, eyeHeight);
+  ctx.moveTo(rightEyeCenterPoint - eyeHalfLength, eyeHeight);
   ctx.quadraticCurveTo(
-    rightEyeStartPoint + eyeLength / 2,
-    200,
-    rightEyeStartPoint + eyeLength,
+    rightEyeCenterPoint,
+    180,
+    rightEyeCenterPoint + eyeHalfLength,
     eyeHeight
   );
   ctx.stroke();
@@ -47,11 +53,11 @@ function changeWords() {
   ctx.strokeStyle = "black";
   ctx.lineWidth = 15;
   ctx.beginPath();
-  ctx.moveTo(leftEyeStartPoint + eyeLength / 2, mouthHeight);
+  ctx.moveTo(mouthCenterPoint - mouthHalfLength, mouthHeight);
   ctx.quadraticCurveTo(
-    100,
+    mouthCenterPoint,
     mouthHeight,
-    rightEyeStartPoint + eyeLength / 2,
+    mouthCenterPoint + mouthHalfLength,
     mouthHeight
   );
   ctx.stroke();
@@ -67,8 +73,14 @@ document.addEventListener("DOMContentLoaded", function () {
   ctx = canvas.getContext("2d");
 
   // Canvas のサイズをクライアントサイズに合わせる
-  canvas.width = document.documentElement.clientWidth / 2;
-  canvas.height = document.documentElement.clientHeight / 2;
+  canvasWidth = document.documentElement.clientWidth / 2;
+  canvasHeight = document.documentElement.clientHeight / 4;
+  canvas.width = canvasWidth;
+  canvas.height = canvasHeight;
+
+  leftEyeCenterPoint = canvasWidth * (1 / 4);
+  rightEyeCenterPoint = canvasWidth * (3 / 4);
+  mouthCenterPoint = canvasWidth * (1 / 2);
 
   // loop開始
   setInterval(changeWords, 1000);
