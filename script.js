@@ -15,6 +15,7 @@ function changeWords() {
 
   // canvas処理
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.lineCap = "round";
 
   // 左目
   ctx.strokeStyle = "black";
@@ -22,7 +23,7 @@ function changeWords() {
   ctx.beginPath();
   ctx.moveTo(leftEyeStartPoint, eyeHeight);
   ctx.quadraticCurveTo(
-    leftEyeStartPoint + (eyeLength / 2),
+    leftEyeStartPoint + eyeLength / 2,
     200,
     leftEyeStartPoint + eyeLength,
     eyeHeight
@@ -35,7 +36,7 @@ function changeWords() {
   ctx.beginPath();
   ctx.moveTo(rightEyeStartPoint, eyeHeight);
   ctx.quadraticCurveTo(
-    rightEyeStartPoint + (eyeLength / 2),
+    rightEyeStartPoint + eyeLength / 2,
     200,
     rightEyeStartPoint + eyeLength,
     eyeHeight
@@ -46,8 +47,13 @@ function changeWords() {
   ctx.strokeStyle = "black";
   ctx.lineWidth = 15;
   ctx.beginPath();
-  ctx.moveTo(leftEyeStartPoint + (eyeLength / 2), mouthHeight);
-  ctx.quadraticCurveTo(100, mouthHeight, rightEyeStartPoint + (eyeLength / 2), mouthHeight);
+  ctx.moveTo(leftEyeStartPoint + eyeLength / 2, mouthHeight);
+  ctx.quadraticCurveTo(
+    100,
+    mouthHeight,
+    rightEyeStartPoint + eyeLength / 2,
+    mouthHeight
+  );
   ctx.stroke();
 }
 
@@ -61,8 +67,8 @@ document.addEventListener("DOMContentLoaded", function () {
   ctx = canvas.getContext("2d");
 
   // Canvas のサイズをクライアントサイズに合わせる
-  canvas.width = (document.documentElement.clientWidth - 10) / 2;
-  canvas.height = (document.documentElement.clientHeight - 10) / 2;
+  canvas.width = document.documentElement.clientWidth / 2;
+  canvas.height = document.documentElement.clientHeight / 2;
 
   // loop開始
   setInterval(changeWords, 1000);
