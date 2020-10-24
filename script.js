@@ -126,5 +126,5 @@ document.addEventListener("DOMContentLoaded", function () {
   mouthCenterPoint = canvasWidth * (1 / 2);
 
   // loop開始
-  setInterval(changeWords, 3000);
+  setInterval(changeWords, 6000);
 });
