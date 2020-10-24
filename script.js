@@ -4,6 +4,7 @@ let ctx;
 let canvasWidth;
 let canvasHeight;
 let selectedIndex = 0;
+let beforeSelectedWordIndex = 0;
 
 // 顔の定義
 let leftEyeCenterPoint;
@@ -25,8 +26,14 @@ const eyeHeightCollection = [
 ];
 
 function changeWords() {
+  let selectedWordIndex = Math.floor(Math.random() * wordList.length);
+  while (beforeSelectedWordIndex === selectedWordIndex) {
+    selectedWordIndex = Math.floor(Math.random() * wordList.length);
+  }
+  beforeSelectedWordIndex = selectedWordIndex;
+
   target = document.getElementById("word");
-  target.textContent = wordList[Math.floor(Math.random() * wordList.length)];
+  target.textContent = wordList[selectedWordIndex];
 
   // 目の位置を選ぶ
   const beforeSelectedIndex = selectedIndex;
@@ -126,5 +133,5 @@ document.addEventListener("DOMContentLoaded", function () {
   mouthCenterPoint = canvasWidth * (1 / 2);
 
   // loop開始
-  setInterval(changeWords, 6000);
+  setInterval(changeWords, 8000); // 8000
 });
